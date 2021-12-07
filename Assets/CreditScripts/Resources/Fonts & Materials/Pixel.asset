@@ -154,11 +154,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: ARCADECLASSIC SDF
+  m_Name: Pixel
   m_EditorClassIdentifier: 
-  hashCode: 1989904485
+  hashCode: 93985224
   material: {fileID: -8162617066483551348}
-  materialHashCode: 918798757
+  materialHashCode: -510395160
   m_Version: 1.1.0
   m_SourceFontFileGUID: b48ea7aad55787344b846b0aaa240362
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: b48ea7aad55787344b846b0aaa240362,

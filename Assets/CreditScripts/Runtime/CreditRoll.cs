@@ -4,30 +4,48 @@ using UnityEngine;
 using TMPro;
 using System.Threading.Tasks;
 
+
 public class CreditRoll : MonoBehaviour
 {
     [System.Serializable]
     public class TextType
     {
+        [Tooltip("Jump lines from the current line")]
         public int jumpLine;
-        public enum FontType { Pixel, Arial, Sketch }
-        public enum FontColor { white, black, red, orange, yellow, green, tint, blue, purple}
+        public enum FontColor { white, black, red, orange, yellow, green, tint, blue, purple }
+        [Tooltip("Text color")]
         public FontColor color;
+        [Tooltip("Text font you want to use")]
         public FontType font;
+        [Tooltip("X offset starting from the screen left")]
         public float xOffset;
-        public float sizePercentageReduce;
+        [Tooltip("Text size reduction from the max size")]
+        public float sizeReduce;
+        [Tooltip("Text you want to write")]
         public string message;
     }
 
-    public Vector2 startPosition, endPosition;
+    [Tooltip("Inital position of the text")]
+    public Vector2 startPosition;
+    [Tooltip("Final position of the text")]
+    public Vector2 endPosition;
+    [Tooltip("Second required to scroll through the text")]
     public float scrollSecond;
+    [Tooltip("The default size.")]
     public int maxFontSize;
-    public GameObject TextPrefab, attachParent;
-    public string[] fontName;
+    [Tooltip("Parent object of the text")]
+    public GameObject attachParent;
+    [Space(40)]
+    [Tooltip("The fonts you want to use (SDF name should match the list name. No space, or symbols should be included)")]
+    public List<string> fontName;
+    [Space(40)]
+    [Tooltip("The texts presented on the screen")]
     public List<TextType> texts;
+    [Space(40)]
+    public GameObject TextPrefab;
     private bool isFromContructor;
 
-    [HideInInspector]public TextMeshProUGUI ingameText;
+    [HideInInspector] public TextMeshProUGUI ingameText;
 
     public CreditRoll(Vector2 startPosition, Vector2 endPosition, float seconds, GameObject parent, int maxFontSize, List<TextType> texts)
     {
@@ -48,14 +66,14 @@ public class CreditRoll : MonoBehaviour
             CreateRollingText();
             ingameText.text = GenerateTextLogic();
             Show();
-            bool finished = await ScrollCredit(startPosition , endPosition, scrollSecond);
+            bool finished = await ScrollCredit(startPosition, endPosition, scrollSecond);
         }
     }
 
     public string GenerateTextLogic()
     {
         string logicString = null;
-        for(int i = 0; i < texts.Count; i++)
+        for (int i = 0; i < texts.Count; i++)
         {
             if (texts[i].jumpLine > 0)
             {
@@ -64,21 +82,11 @@ public class CreditRoll : MonoBehaviour
                     logicString += "\n";
                 }
             }
-            if (texts[i].font == TextType.FontType.Pixel)
-            {
-                logicString += "<font=\"" + fontName[0] + "\">";
-            }
-            else if (texts[i].font == TextType.FontType.Arial)
-            {
-                logicString += "<font=\"" + fontName[1] + "\">";
-            }
-            else
-            {
-                logicString += "<font=\"" + fontName[2] + "\">";
-            }
+
+            logicString += "<font=\"" + System.Enum.GetName(typeof(FontType), texts[i].font) + "\">";
             logicString += "<align=\"" + "left" + "\">";
 
-            logicString += "<size=" + (100 - texts[i].sizePercentageReduce) + "%>";
+            logicString += "<size=" + (100 - texts[i].sizeReduce) + "%>";
             logicString += "<color=#" + GetColorCode(texts[i].color) + ">";
             logicString += "<space=" + texts[i].xOffset + "em>";
 

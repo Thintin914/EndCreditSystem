@@ -52,11 +52,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: GreatVibes-Regular SDF
+  m_Name: Sketch
   m_EditorClassIdentifier: 
-  hashCode: -1351543032
+  hashCode: -1003878654
   material: {fileID: 1137768574486950974}
-  materialHashCode: -323836504
+  materialHashCode: -1684567454
   m_Version: 1.1.0
   m_SourceFontFileGUID: c3350023f68974043b4307a50ea76ff4
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: c3350023f68974043b4307a50ea76ff4,

@@ -112,11 +112,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 71c1514a6bd24e1e882cebbe1904ce04, type: 3}
-  m_Name: GothicA1-Regular SDF
+  m_Name: Arial
   m_EditorClassIdentifier: 
-  hashCode: 691028072
+  hashCode: 74183927
   material: {fileID: -6525180312557026615}
-  materialHashCode: 395086280
+  materialHashCode: -1344487177
   m_Version: 1.1.0
   m_SourceFontFileGUID: 5751de7c34d7c1245a79168201b82b2f
   m_SourceFontFile_EditorRef: {fileID: 12800000, guid: 5751de7c34d7c1245a79168201b82b2f,

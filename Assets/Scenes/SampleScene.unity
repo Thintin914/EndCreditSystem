@@ -263,59 +263,65 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: 0, y: -1500}
-  endPosition: {x: 0, y: 800}
-  scrollSecond: 5
-  maxFontSize: 200
-  TextPrefab: {fileID: 218200062894911361, guid: f2e071b99d4ad7948a7087e9706d4c0a,
-    type: 3}
+  endPosition: {x: 0, y: 1200}
+  scrollSecond: 8
+  maxFontSize: 150
   attachParent: {fileID: 622814665}
   fontName:
-  - ARCADECLASSIC SDF
-  - GothicA1-Regular SDF
-  - GreatVibes-Regular SDF
+  - Pixel
+  - Arial
+  - Sketch
   texts:
   - jumpLine: 0
+    color: 8
+    font: 0
+    xOffset: 1.2
+    sizeReduce: 0
+    message: Thank You For Playing!
+  - jumpLine: 1
+    color: 0
+    font: 0
+    xOffset: 10.5
+    sizeReduce: 50
+    message: Creators
+  - jumpLine: 2
+    color: 2
+    font: 0
+    xOffset: 4.5
+    sizeReduce: 50
+    message: Jeff Wong
+  - jumpLine: 0
+    color: 4
+    font: 0
+    xOffset: 1.4
+    sizeReduce: 50
+    message: Benny Kok
+  - jumpLine: 0
+    color: 6
+    font: 0
+    xOffset: 1.4
+    sizeReduce: 50
+    message: Jacky Wu
+  - jumpLine: 4
     color: 1
     font: 0
-    xOffset: 0.65
-    sizePercentageReduce: 20
-    message: Thank You For Playing!
+    xOffset: 1.25
+    sizeReduce: 10
+    message: -With Special Thanks To-
   - jumpLine: 2
-    color: 1
-    font: 1
-    xOffset: 2
-    sizePercentageReduce: 60
-    message: Event Holder
-  - jumpLine: 0
     color: 2
     font: 2
     xOffset: 4
-    sizePercentageReduce: 60
+    sizeReduce: 10
     message: Global Game Jam
-  - jumpLine: 2
-    color: 3
-    font: 0
-    xOffset: 2
-    sizePercentageReduce: 60
-    message: Creators
-  - jumpLine: 0
+  - jumpLine: 4
     color: 1
     font: 0
-    xOffset: 5.8
-    sizePercentageReduce: 60
-    message: Benny Kok
-  - jumpLine: 1
-    color: 6
-    font: 0
-    xOffset: 12.1
-    sizePercentageReduce: 60
-    message: Jeff Wong
-  - jumpLine: 1
-    color: 1
-    font: 0
-    xOffset: 12.1
-    sizePercentageReduce: 60
-    message: Jacky Wu
+    xOffset: 5.25
+    sizeReduce: 10
+    message: -The End-
+  TextPrefab: {fileID: 218200062894911361, guid: f2e071b99d4ad7948a7087e9706d4c0a,
+    type: 3}
   ingameText: {fileID: 0}
 --- !u!1 &705507993
 GameObject:
