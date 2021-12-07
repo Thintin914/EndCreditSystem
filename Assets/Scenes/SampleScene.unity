@@ -262,7 +262,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f7fb33ce8cca9bc469e5a5d6d110bd2b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxFontSize: 0
+  startPosition: {x: 0, y: -1500}
+  endPosition: {x: 0, y: 800}
+  scrollSecond: 5
+  maxFontSize: 200
   TextPrefab: {fileID: 218200062894911361, guid: f2e071b99d4ad7948a7087e9706d4c0a,
     type: 3}
   attachParent: {fileID: 622814665}

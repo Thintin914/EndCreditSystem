@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
+using System.Threading.Tasks;
 
 public class CreditRoll : MonoBehaviour
 {
@@ -18,18 +19,37 @@ public class CreditRoll : MonoBehaviour
         public string message;
     }
 
+    public Vector2 startPosition, endPosition;
+    public float scrollSecond;
     public int maxFontSize;
     public GameObject TextPrefab, attachParent;
     public string[] fontName;
     public List<TextType> texts;
+    private bool isFromContructor;
 
     [HideInInspector]public TextMeshProUGUI ingameText;
 
-    private void Start()
+    public CreditRoll(Vector2 startPosition, Vector2 endPosition, float seconds, GameObject parent, int maxFontSize, List<TextType> texts)
     {
-        CreateRollingText();
-        ingameText.text = GenerateTextLogic();
-        Show();
+        isFromContructor = true;
+
+        this.startPosition = startPosition;
+        this.endPosition = endPosition;
+        scrollSecond = seconds;
+        attachParent = parent;
+        this.maxFontSize = maxFontSize;
+        this.texts = texts;
+    }
+
+    private async void Start()
+    {
+        if (!isFromContructor)
+        {
+            CreateRollingText();
+            ingameText.text = GenerateTextLogic();
+            Show();
+            bool finished = await ScrollCredit(startPosition , endPosition, scrollSecond);
+        }
     }
 
     public string GenerateTextLogic()
@@ -100,6 +120,9 @@ public class CreditRoll : MonoBehaviour
             ingameText = null;
         }
         ingameText = Instantiate(TextPrefab, attachParent.transform).GetComponent<TextMeshProUGUI>();
+        ingameText.transform.position = startPosition;
+        ingameText.transform.position += new Vector3(attachParent.transform.position.x, attachParent.transform.position.y);
+        ingameText.fontSize = maxFontSize;
     }
 
     public void Show()
@@ -121,4 +144,36 @@ public class CreditRoll : MonoBehaviour
         }
     }
 
+    public async Task<bool> ScrollCredit(Vector2 startPosition, Vector2 destination, float seconds)
+    {
+        await WaitScrollCredit(startPosition, destination, seconds);
+        return true;
+    }
+    private async Task WaitScrollCredit(Vector2 startPosition, Vector2 destination, float seconds)
+    {
+        float endTime = Time.timeSinceLevelLoad + seconds;
+        float currentTime = Time.timeSinceLevelLoad;
+        float percentage = 0;
+        Vector3 scrollStartPosition = startPosition;
+        scrollStartPosition.x += attachParent.transform.position.x;
+        scrollStartPosition.y += attachParent.transform.position.y;
+        Vector3 endPosition = destination;
+        endPosition.x += attachParent.transform.position.x;
+        endPosition.y += attachParent.transform.position.y;
+
+        try
+        {
+            do
+            {
+                currentTime += Time.deltaTime;
+                percentage = currentTime / endTime;
+                ingameText.transform.position = Vector3.Lerp(scrollStartPosition, endPosition, percentage);
+                await Task.Yield();
+            } while (percentage <= 1);
+        }
+        catch (MissingReferenceException e)
+        {
+            Debug.Log("Credit Roll System:\t---Credit Scrolling Was Ended Before It Finished---\n" + e);
+        }
+    }
 }
